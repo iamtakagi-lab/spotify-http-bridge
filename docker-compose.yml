@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  spotify-http-bridge:
+    image: iamtakagi/spotify-http-bridge
+    environment:
+      TZ: Asia/Tokyo
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 8080
+      SPOTIFY_CLIENT_ID: xxx
+      SPOTIFY_CLIENT_SECRET: xxx
+      SPOTIFY_REDIRECT_URI: http://localhost:8080/callback
+    ports:
+      - 8080:8080
+    volumes:
+      - ./credential.json:/app/credential.json
+    restart: unless-stopped
