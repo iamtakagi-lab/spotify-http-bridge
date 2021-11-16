@@ -155,6 +155,7 @@ router.all("/authorize", async (ctx: Context) => {
 
 router.delete("/authorize/revoke", async (ctx: Context) => {
   credential.reset()
+  credential.save()
   ctx.status = 200
 })
 
