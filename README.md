@@ -1,5 +1,5 @@
 # spotify-http-bridge
-Getting Spotify data via Http / Spotifyの再生情報などを提供する Httpサーバ
+Getting Spotify data over Http / Spotifyの再生情報などを提供する Httpサーバ
 
 ## Endpoints
 | Path | Summary | Method |
