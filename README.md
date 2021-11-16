@@ -1,5 +1,5 @@
 # spotify-http-bridge
-Getting Spotify data via Http.
+Getting Spotify data via Http / Spotifyの再生情報などを提供する Httpサーバ
 
 ## Endpoints
 | Path | Summary | Method |
@@ -32,13 +32,6 @@ services:
       - ./credential.json:/app/credential.json
     restart: unless-stopped
 ```
-
-### Confirmed Environment
-- macOS Big Sur 11.6.1（20G219) 
-- Docker 20.10.6, build 370c289
-- docker-compose 1.29.1, build c34c88b2
-- Node 16
-- TypeScript 4.3.5
 
 ## LICENSE
 iamtakagi/spotify-http-bridge is provided under the MIT license.
