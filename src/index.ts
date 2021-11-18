@@ -94,7 +94,7 @@ const getMe = async () => {
   })
 }
 
-const getPlaying = async () => {
+const getPlayer = async () => {
   return new Promise<Playing | null>((resolve) => {
     const { accessToken, refreshToken } = credential
     if (!accessToken || !refreshToken || accessToken.length <= 0 || refreshToken.length <= 0) return resolve(null)
@@ -118,7 +118,7 @@ const getPlaying = async () => {
           spotify.setRefreshToken(refreshToken)
         }
         credential.save()
-        return (await spotify.getMyCurrentPlayingTrack()).body
+        return (await spotify.getMyCurrentPlaybackState()).body
       })
       .then((async (track) => {
         if(!track || !track.item) return resolve(null)
@@ -187,11 +187,11 @@ router.get("/me", async (ctx: Context) => {
   ctx.set('Content-Type', 'application/json')
 })
 
-router.get("/playing", async (ctx: Context) => {
+router.get("/player", async (ctx: Context) => {
   const me = await getMe()
   if (!me) return ctx.status = 401
-  const playing = await getPlaying()
-  ctx.body = JSON.stringify(playing)
+  const player = await getPlayer()
+  ctx.body = JSON.stringify(player)
   ctx.set('Content-Type', 'application/json')
 })
 
