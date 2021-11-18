@@ -102,7 +102,7 @@ const getPlayer = async () => {
     spotify.setAccessToken(accessToken)
     spotify.setRefreshToken(refreshToken)
 
-    spotify.getMyCurrentPlayingTrack().then((data) => {
+    spotify.getMyCurrentPlaybackState().then((data) => {
       return data.body
     })
       .catch(async (e: Error) => {
