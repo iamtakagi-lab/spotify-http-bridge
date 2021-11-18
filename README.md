@@ -29,7 +29,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./credential.json:/app/credential.json
+      - ./token.json:/app/token.json
     restart: unless-stopped
 ```
 
