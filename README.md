@@ -2,13 +2,13 @@
 Getting Spotify data over Http / Spotifyの再生情報などを提供する Httpサーバ
 
 ## Endpoints
-| Path | Summary | Method |
-| :--- | :--- | :--- |
-| /authorize | Login with Spotify | ALL |
+| Path | Summary | Method | Origin
+| :--- | :--- | :--- | :---
+| /authorize | Login with Spotify | ALL | https://accounts.spotify.com/authorize
 | /authorize/revoke | Delete currently credential | DELETE |
 | /callback | Redirect endpoint for authorizaiton | GET |
-| /me | Response my profile | GET |
-| /player | Response player | GET |
+| /me | Response my profile | GET | /v1/me
+| /player | Response player | GET | /v1/me/player
 
 ## Run
 https://hub.docker.com/r/iamtakagi/spotify-http-bridge
