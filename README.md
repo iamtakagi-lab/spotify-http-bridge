@@ -5,7 +5,7 @@ Getting Spotify data over Http / Spotifyの再生情報などを提供する Htt
 | Path | Summary | Method | Origin
 | :--- | :--- | :--- | :---
 | /authorize | Login with Spotify | ALL | https://accounts.spotify.com/authorize
-| /authorize/revoke | Delete currently credential | DELETE |
+| /authorize/revoke | Delete local token | DELETE |
 | /callback | Redirect endpoint for authorizaiton | GET |
 | /me | Response my profile | GET | /v1/me
 | /player | Response player | GET | /v1/me/player
