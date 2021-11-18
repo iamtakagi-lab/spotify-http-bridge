@@ -6,11 +6,6 @@ import fs from "fs";
 import path from "path";
 import SpotifyWebApi from "spotify-web-api-node";
 
-type Playing = {
-  track: SpotifyApi.CurrentlyPlayingResponse;
-  details: SpotifyApi.SingleTrackResponse;
-};
-
 interface ISpotifyToken {
   accessToken: string | null;
   refreshToken: string | null;
@@ -115,14 +110,11 @@ const getMe = async () => {
         refreshToken.length <= 0
       )
         return resolve(null);
-
       if (token.isExpired()) {
         token.refresh();
       }
-
       spotify.setAccessToken(accessToken);
       spotify.setRefreshToken(refreshToken);
-
       spotify
         .getMe()
         .then((data) => {
@@ -139,7 +131,7 @@ const getMe = async () => {
 };
 
 const getPlayer = async () => {
-  return new Promise<Playing | null>((resolve) => {
+  return new Promise<SpotifyApi.CurrentPlaybackResponse | null>((resolve) => {
     const { accessToken, refreshToken } = token;
     if (
       !accessToken ||
@@ -148,23 +140,19 @@ const getPlayer = async () => {
       refreshToken.length <= 0
     )
       return resolve(null);
-
     if (token.isExpired()) {
       token.refresh();
     }
-
     spotify.setAccessToken(accessToken);
     spotify.setRefreshToken(refreshToken);
-
     spotify
       .getMyCurrentPlaybackState()
       .then((data) => {
         return data.body;
       })
       .then(async (track) => {
-        if (!track || !track.item) return resolve(null);
-        const details = (await spotify.getTrack(track.item.id)).body;
-        resolve({ track, details });
+        if (!track) return resolve(null);
+        resolve(track);
       })
       .catch((e) => {
         console.log(e);
